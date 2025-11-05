@@ -1,0 +1,194 @@
+<header class="hero">
+  <p-toolbar styleClass="hero__toolbar">
+    <ng-template pTemplate="start">
+      <div class="logo">
+        <span class="logo__sigla">TJDFT</span>
+        <span class="logo__canal">Canal Conciliar</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="center">
+      <nav class="hero__menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#noticias">Notícias</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <button pButton type="button" label="Acessar transmissão" icon="pi pi-youtube"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div class="hero__content">
+    <p-carousel
+      [value]="heroSlides"
+      [circular]="true"
+      [autoplayInterval]="6000"
+      [numVisible]="1"
+      [numScroll]="1"
+      [showIndicators]="true"
+      [showNavigators]="false"
+    >
+      <ng-template let-slide pTemplate="item">
+        <section class="hero__slide">
+          <div class="hero__text">
+            <p class="hero__subtitle">{{ slide.subtitle }}</p>
+            <h1>{{ slide.title }}</h1>
+            <p class="hero__description">{{ slide.description }}</p>
+            <button pButton type="button" class="p-button-rounded" [label]="slide.ctaLabel"></button>
+          </div>
+          <div class="hero__visual">
+            <div class="hero__badge">
+              <i class="pi pi-broadcast"></i>
+              <span>Ao vivo</span>
+            </div>
+            <div class="hero__card">
+              <h3>Programação do dia</h3>
+              <ul>
+                <li>
+                  <span>09h00</span>
+                  <span>Sessão Cível</span>
+                </li>
+                <li>
+                  <span>11h00</span>
+                  <span>Oficina de mediação</span>
+                </li>
+                <li>
+                  <span>15h00</span>
+                  <span>Atendimento ao público</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-carousel>
+  </div>
+</header>
+
+<main>
+  <section id="servicos" class="section services">
+    <div class="section__header">
+      <h2>Serviços em destaque</h2>
+      <p>Acesso rápido aos principais conteúdos do Canal Conciliar.</p>
+    </div>
+    <div class="services__grid">
+      <p-card *ngFor="let service of serviceCards" class="services__card" [styleClass]="'service-card'">
+        <ng-template pTemplate="header">
+          <span class="service-card__icon">
+            <i [class]="service.icon"></i>
+          </span>
+        </ng-template>
+        <ng-template pTemplate="title">{{ service.title }}</ng-template>
+        <ng-template pTemplate="content">
+          <p>{{ service.description }}</p>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <a class="service-card__link" href="#">{{ service.linkLabel }}</a>
+        </ng-template>
+      </p-card>
+    </div>
+  </section>
+
+  <section class="section highlight">
+    <div class="highlight__content">
+      <div class="highlight__video">
+        <div class="highlight__screen">
+          <i class="pi pi-play"></i>
+        </div>
+        <div class="highlight__meta">
+          <span class="tag">{{ featuredVideo.duration }}</span>
+          <h3>{{ featuredVideo.title }}</h3>
+          <p>{{ featuredVideo.description }}</p>
+          <button pButton type="button" label="Assistir episódio" icon="pi pi-youtube" iconPos="right"></button>
+        </div>
+      </div>
+      <div class="highlight__support" id="contato">
+        <h3>Canais de apoio ao cidadão</h3>
+        <p class="highlight__support-description">
+          Conte com uma equipe especializada para orientar cada etapa do seu processo de conciliação.
+        </p>
+        <ul>
+          <li *ngFor="let channel of supportChannels">
+            <i [class]="channel.icon"></i>
+            <div>
+              <h4>{{ channel.title }}</h4>
+              <p>{{ channel.description }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="agenda" class="section agenda">
+    <div class="section__header">
+      <h2>Agenda de conciliação</h2>
+      <p>Eventos, mutirões e capacitações para você participar.</p>
+    </div>
+    <div class="agenda__timeline">
+      <article *ngFor="let item of agenda" class="agenda__card">
+        <div class="agenda__date">{{ item.date }}</div>
+        <div class="agenda__body">
+          <h3>{{ item.label }}</h3>
+          <p>{{ item.time }}</p>
+          <span class="agenda__location">
+            <i class="pi pi-map-marker"></i>
+            {{ item.location }}
+          </span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="noticias" class="section news">
+    <div class="section__header">
+      <h2>Notícias e histórias</h2>
+      <p>Acompanhe iniciativas que promovem diálogo e cidadania.</p>
+    </div>
+    <div class="news__grid">
+      <p-card *ngFor="let item of news" [styleClass]="'news-card'">
+        <ng-template pTemplate="subtitle">
+          <span class="news-card__tag">{{ item.tag }}</span>
+        </ng-template>
+        <ng-template pTemplate="title">
+          <a href="#">{{ item.title }}</a>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <p>{{ item.description }}</p>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <span class="news-card__date">{{ item.date }}</span>
+        </ng-template>
+      </p-card>
+    </div>
+  </section>
+
+  <section class="section partners">
+    <div class="section__header">
+      <h2>Rede de parceiros</h2>
+      <p>Iniciativas do Canal Conciliar contam com o apoio de diversas instituições.</p>
+    </div>
+    <ul class="partners__list">
+      <li *ngFor="let partner of partners">{{ partner }}</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__brand">
+      <span class="logo__sigla">TJDFT</span>
+      <span class="logo__canal">Canal Conciliar</span>
+    </div>
+    <div class="footer__info">
+      <p>Tribunal de Justiça do Distrito Federal e dos Territórios</p>
+      <p>Setor de Administração Federal Sul - Brasília/DF</p>
+    </div>
+    <div class="footer__links">
+      <a href="#">Política de privacidade</a>
+      <a href="#">Acessibilidade</a>
+      <a href="#">Fale conosco</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .p-toolbar.hero__toolbar {
+  border-radius: 0;
+}
+
+:host ::ng-deep .p-carousel .p-carousel-content {
+  padding-bottom: 1.5rem;
+}
+
+:host ::ng-deep .p-card.service-card .p-card-body {
+  padding: 0 1.5rem 1.5rem;
+}
+
+:host ::ng-deep .p-card.service-card .p-card-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+:host ::ng-deep .p-card.news-card .p-card-title a {
+  color: #031126;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+:host ::ng-deep .p-card.news-card .p-card-footer {
+  padding-top: 0;
+}
