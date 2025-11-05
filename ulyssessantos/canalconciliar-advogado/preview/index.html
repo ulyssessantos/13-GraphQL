@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Canal Conciliar — Pré-visualização "Sou advogado"</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <div class="banner__inner">
+        <div class="banner__identity">
+          <span class="banner__sigla">TJDFT</span>
+          <span class="banner__divider" aria-hidden="true"></span>
+          <div class="banner__labels">
+            <span class="banner__title">Canal Conciliar</span>
+            <span class="banner__subtitle">Centro Judiciário de Solução de Conflitos e Cidadania</span>
+          </div>
+        </div>
+        <div class="banner__meta">
+          <span class="badge">Pré-visualização estática</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero" data-view="landing">
+        <div class="hero__content">
+          <h1>Simulação do fluxo “Sou advogado”</h1>
+          <p>
+            Esta experiência ilustra como o portal Canal Conciliar pode conduzir profissionais da advocacia após o acesso pelo
+            botão <strong>“Sou advogado”</strong>. A jornada contempla autenticação obrigatória e seis etapas sequenciais para
+            cadastrar uma solicitação de conciliação assistida.
+          </p>
+          <ul class="hero__list">
+            <li>Autenticação via Gov.br ou PJe antes de iniciar o pedido.</li>
+            <li>Formulário dividido em abas com validação por etapa.</li>
+            <li>Resumo automático e recibo de protocolo ao final.</li>
+          </ul>
+          <div class="hero__actions">
+            <a class="button button--ghost" href="https://canalconciliar.tjdft.jus.br/" target="_blank" rel="noreferrer"
+              >Consultar</a
+            >
+            <button type="button" class="button" data-action="abrir-autenticacao">Sou advogado</button>
+          </div>
+        </div>
+        <div class="hero__card card">
+          <header class="card__header">
+            <h2>Fluxo em seis etapas</h2>
+            <p>Veja o que está incluído na simulação.</p>
+          </header>
+          <ol class="hero__steps">
+            <li>Orientações e ciência prévia.</li>
+            <li>Identificação do advogado e envio da OAB em PDF.</li>
+            <li>Cadastro de participantes com consulta de CEP.</li>
+            <li>Seleção do assunto e anexos vinculados.</li>
+            <li>Confirmação das informações prestadas.</li>
+            <li>Geração de protocolo e resumo final.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="auth" data-view="auth" hidden>
+        <div class="auth__card card">
+          <header class="card__header">
+            <h2>Acesso autenticado</h2>
+            <p>Selecione o método de autenticação indicado pelo TJDFT para iniciar uma nova solicitação de conciliação.</p>
+          </header>
+          <form id="auth-form" class="auth-form">
+            <fieldset class="auth-form__options">
+              <legend>Métodos disponíveis</legend>
+              <label class="choice choice--option">
+                <input type="radio" name="metodoAutenticacao" value="govbr" />
+                <span>
+                  <strong>Gov.br</strong>
+                  <small>Acesso unificado do governo federal com múltiplos níveis de segurança.</small>
+                </span>
+              </label>
+              <label class="choice choice--option">
+                <input type="radio" name="metodoAutenticacao" value="pje" />
+                <span>
+                  <strong>PJe</strong>
+                  <small>Autenticação integrada ao Processo Judicial Eletrônico do TJDFT.</small>
+                </span>
+              </label>
+            </fieldset>
+            <p class="auth-form__hint">
+              Após a autenticação o sistema verifica o vínculo profissional e libera o formulário específico para advogados.
+            </p>
+            <footer class="auth-form__actions">
+              <button type="button" class="button button--ghost" data-action="voltar-inicio">Cancelar</button>
+              <button type="submit" class="button">Prosseguir para o formulário</button>
+            </footer>
+          </form>
+        </div>
+      </section>
+
+      <section class="workspace" data-view="wizard" hidden>
+        <div class="workspace__form">
+          <form id="conciliation-wizard" class="wizard" novalidate>
+            <header class="wizard__progress" aria-label="Progresso do cadastro">
+              <ol class="progress" role="list">
+                <li class="progress__item is-active" data-progress-step="0">
+                  <span class="progress__badge">1</span>
+                  <span class="progress__label">Orientações</span>
+                </li>
+                <li class="progress__item" data-progress-step="1">
+                  <span class="progress__badge">2</span>
+                  <span class="progress__label">Dados do advogado</span>
+                </li>
+                <li class="progress__item" data-progress-step="2">
+                  <span class="progress__badge">3</span>
+                  <span class="progress__label">Participantes</span>
+                </li>
+                <li class="progress__item" data-progress-step="3">
+                  <span class="progress__badge">4</span>
+                  <span class="progress__label">Acordo</span>
+                </li>
+                <li class="progress__item" data-progress-step="4">
+                  <span class="progress__badge">5</span>
+                  <span class="progress__label">Confirmação</span>
+                </li>
+                <li class="progress__item" data-progress-step="5">
+                  <span class="progress__badge">6</span>
+                  <span class="progress__label">Finalizado</span>
+                </li>
+              </ol>
+            </header>
+
+            <div class="wizard__steps">
+              <section class="wizard-step is-active" data-step="orientacoes" aria-labelledby="step-orientacoes">
+                <div class="wizard-step__header">
+                  <h2 id="step-orientacoes">Orientações iniciais</h2>
+                  <p>Leia com atenção as diretrizes abaixo antes de prosseguir com o registro.</p>
+                </div>
+
+                <article class="guidance">
+                  <p>
+                    Prezado advogado, este espaço destina-se a pedidos consensuais de conciliação acompanhados por representante
+                    legal. Garanta que todas as partes estejam cientes do contato do TJDFT e mantenha disponível a documentação
+                    comprobatória pertinente.
+                  </p>
+                  <p>
+                    O atendimento é priorizado para solicitações completas. Utilize linguagem clara ao descrever o conflito e
+                    organize previamente os anexos. Em caso de dúvidas, procure a equipe do Canal Conciliar antes de seguir.
+                  </p>
+                </article>
+
+                <label class="choice choice--checkbox guidance__consent">
+                  <input type="checkbox" id="orientacoes-ciente" name="orientacoesCiente" required />
+                  <span>
+                    Declaro que li e estou ciente das orientações fornecidas, comprometendo-me a manter as partes informadas e a
+                    apresentar documentos fidedignos.
+                  </span>
+                </label>
+
+                <footer class="wizard-step__actions">
+                  <button type="button" class="button" data-action="next">Próximo</button>
+                </footer>
+              </section>
+
+              <section class="wizard-step" data-step="advogado" aria-labelledby="step-advogado" hidden>
+                <div class="wizard-step__header">
+                  <h2 id="step-advogado">Dados do advogado</h2>
+                  <p>Informe os meios de contato e anexe a comprovação de inscrição na OAB.</p>
+                </div>
+
+                <div class="field">
+                  <label for="advogado-nome">Nome completo</label>
+                  <input
+                    type="text"
+                    id="advogado-nome"
+                    name="advogadoNome"
+                    placeholder="Ex.: Ana Carolina Menezes"
+                    required
+                  />
+                </div>
+
+                <div class="field-group">
+                  <div class="field">
+                    <label for="advogado-oab">Número da OAB</label>
+                    <input type="text" id="advogado-oab" name="advogadoOab" placeholder="UF000000" required />
+                  </div>
+                  <div class="field">
+                    <label for="advogado-whatsapp">WhatsApp</label>
+                    <input
+                      type="tel"
+                      id="advogado-whatsapp"
+                      name="advogadoWhatsapp"
+                      placeholder="(61) 99999-0000"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="advogado-email">E-mail profissional</label>
+                  <input type="email" id="advogado-email" name="advogadoEmail" placeholder="nome@escritorio.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="advogado-documento">Documento: OAB (PDF)</label>
+                  <input
+                    type="file"
+                    id="advogado-documento"
+                    name="advogadoDocumento"
+                    accept="application/pdf"
+                    data-field="advogadoDocumento"
+                    required
+                  />
+                </div>
+
+                <footer class="wizard-step__actions">
+                  <button type="button" class="button button--ghost" data-action="previous">Voltar</button>
+                  <button type="button" class="button" data-action="next">Próximo</button>
+                </footer>
+              </section>
+
+              <section class="wizard-step" data-step="participantes" aria-labelledby="step-participantes" hidden>
+                <div class="wizard-step__header">
+                  <h2 id="step-participantes">Dados dos participantes</h2>
+                  <p>Inclua todas as pessoas envolvidas e confirme os dados de contato para eventuais comunicações.</p>
+                </div>
+
+                <fieldset class="participants-form">
+                  <legend>Participante em edição</legend>
+                  <div class="field">
+                    <label for="participante-nome">Nome completo</label>
+                    <input type="text" id="participante-nome" name="participanteNome" required />
+                  </div>
+
+                  <div class="field-group">
+                    <div class="field">
+                      <label for="participante-documento">CPF/CNPJ</label>
+                      <input type="text" id="participante-documento" name="participanteDocumento" required />
+                    </div>
+                    <div class="field">
+                      <label for="participante-sexo">Sexo</label>
+                      <select id="participante-sexo" name="participanteSexo" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outros">Outros</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <div class="field">
+                      <label for="participante-email">E-mail</label>
+                      <input type="email" id="participante-email" name="participanteEmail" required />
+                    </div>
+                    <div class="field">
+                      <label for="participante-whatsapp">WhatsApp</label>
+                      <input type="tel" id="participante-whatsapp" name="participanteWhatsapp" required />
+                    </div>
+                  </div>
+
+                  <div class="field-group field-group--zip">
+                    <div class="field">
+                      <label for="participante-cep">CEP</label>
+                      <input type="text" id="participante-cep" name="participanteCep" required />
+                    </div>
+                    <button type="button" class="button button--secondary" data-action="buscar-cep">
+                      <span aria-hidden="true">🔍</span>
+                      <span class="sr-only">Consultar endereço pelo CEP</span>
+                    </button>
+                  </div>
+
+                  <div class="field">
+                    <label for="participante-endereco">Endereço</label>
+                    <input type="text" id="participante-endereco" name="participanteEndereco" required />
+                  </div>
+
+                  <div class="field-group">
+                    <div class="field">
+                      <label for="participante-numero">Número</label>
+                      <input type="text" id="participante-numero" name="participanteNumero" required />
+                    </div>
+                    <div class="field">
+                      <label for="participante-complemento">Complemento</label>
+                      <input type="text" id="participante-complemento" name="participanteComplemento" required />
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <div class="field">
+                      <label for="participante-bairro">Bairro</label>
+                      <input type="text" id="participante-bairro" name="participanteBairro" required />
+                    </div>
+                    <div class="field">
+                      <label for="participante-cidade">Cidade</label>
+                      <input type="text" id="participante-cidade" name="participanteCidade" required />
+                    </div>
+                    <div class="field">
+                      <label for="participante-uf">UF</label>
+                      <select id="participante-uf" name="participanteUf" required>
+                        <option value="" disabled selected>UF</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="participants-form__actions">
+                    <button type="button" class="button" data-action="adicionar-participante">Incluir participante</button>
+                    <button type="button" class="button button--ghost" data-action="limpar-participante">Limpar campos</button>
+                  </div>
+                </fieldset>
+
+                <div class="participants-table" aria-live="polite">
+                  <header class="participants-table__header">
+                    <h3>Participantes incluídos</h3>
+                    <p data-preview="participantesQuantidade">Nenhum participante cadastrado até o momento.</p>
+                  </header>
+                  <div class="table-wrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Documento</th>
+                          <th>Contato</th>
+                          <th>Cidade/UF</th>
+                          <th>Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody data-participantes-lista>
+                        <tr class="placeholder">
+                          <td colspan="5">Inclua pelo menos um participante para continuar.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <footer class="wizard-step__actions">
+                  <button type="button" class="button button--ghost" data-action="previous">Voltar</button>
+                  <button type="button" class="button" data-action="next">Próximo</button>
+                </footer>
+              </section>
+
+              <section class="wizard-step" data-step="acordo" aria-labelledby="step-acordo" hidden>
+                <div class="wizard-step__header">
+                  <h2 id="step-acordo">Informações do acordo</h2>
+                  <p>Escolha o assunto principal e anexe os documentos solicitados para análise pela equipe.</p>
+                </div>
+
+                <div class="field">
+                  <label for="acordo-assunto">Assunto</label>
+                  <select id="acordo-assunto" name="acordoAssunto" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="divorcio">Divórcio</option>
+                    <option value="dissolucao">Dissolução de União Estável</option>
+                    <option value="reconhecimento-dissolucao">Reconhecimento e dissolução de união estável</option>
+                    <option value="guarda">Guarda e convivência</option>
+                    <option value="revisao-convivencia">Revisão de convivência</option>
+                    <option value="fixacao-alimentos">Fixação de alimentos</option>
+                    <option value="revisao-alimentos">Revisão de alimentos</option>
+                    <option value="exoneracao-alimentos">Exoneração de alimentos</option>
+                    <option value="execucao-alimentos">Execução de alimentos</option>
+                    <option value="partilha-bens">Partilha de bens</option>
+                    <option value="tutoria-animal">Tutoria (animal)</option>
+                    <option value="levantamento-valor">Levantamento de valor</option>
+                    <option value="inventario">Inventário</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="acordo-documento-base">Documento: Acordo Assinado (PDF)</label>
+                  <input
+                    type="file"
+                    id="acordo-documento-base"
+                    name="acordoDocumentoBase"
+                    accept="application/pdf"
+                    data-field="acordoDocumentoBase"
+                    required
+                  />
+                </div>
+
+                <div class="field-group field-group--stack" data-extra-documentos></div>
+
+                <footer class="wizard-step__actions">
+                  <button type="button" class="button button--ghost" data-action="previous">Voltar</button>
+                  <button type="button" class="button" data-action="next">Próximo</button>
+                </footer>
+              </section>
+
+              <section
+                class="wizard-step wizard-step--review"
+                data-step="confirmacao"
+                aria-labelledby="step-confirmacao"
+                hidden
+              >
+                <div class="wizard-step__header">
+                  <h2 id="step-confirmacao">Confirmação dos dados</h2>
+                  <p>Revise atentamente o resumo antes de enviar a solicitação ao Canal Conciliar.</p>
+                </div>
+
+                <div class="review">
+                  <article class="review__group">
+                    <h3>Autenticação</h3>
+                    <dl>
+                      <div>
+                        <dt>Método</dt>
+                        <dd data-summary="autenticacaoMetodo">—</dd>
+                      </div>
+                      <div>
+                        <dt>Status</dt>
+                        <dd data-summary="autenticacaoStatus">—</dd>
+                      </div>
+                    </dl>
+                  </article>
+
+                  <article class="review__group">
+                    <h3>Advogado</h3>
+                    <dl>
+                      <div>
+                        <dt>Nome</dt>
+                        <dd data-summary="advogadoNome">—</dd>
+                      </div>
+                      <div>
+                        <dt>OAB</dt>
+                        <dd data-summary="advogadoOab">—</dd>
+                      </div>
+                      <div>
+                        <dt>WhatsApp</dt>
+                        <dd data-summary="advogadoWhatsapp">—</dd>
+                      </div>
+                      <div>
+                        <dt>E-mail</dt>
+                        <dd data-summary="advogadoEmail">—</dd>
+                      </div>
+                      <div>
+                        <dt>Documento</dt>
+                        <dd data-summary="advogadoDocumento">Documento não anexado</dd>
+                      </div>
+                    </dl>
+                  </article>
+
+                  <article class="review__group">
+                    <h3>Participantes</h3>
+                    <div class="table-wrapper">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Nome</th>
+                            <th>Documento</th>
+                            <th>Sexo</th>
+                            <th>Contato</th>
+                            <th>Endereço</th>
+                          </tr>
+                        </thead>
+                        <tbody data-summary-participantes>
+                          <tr>
+                            <td colspan="5">Nenhum participante incluído.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </article>
+
+                  <article class="review__group">
+                    <h3>Acordo</h3>
+                    <dl>
+                      <div>
+                        <dt>Assunto</dt>
+                        <dd data-summary="acordoAssunto">—</dd>
+                      </div>
+                      <div>
+                        <dt>Acordo assinado</dt>
+                        <dd data-summary="acordoDocumentoBase">Documento não anexado</dd>
+                      </div>
+                    </dl>
+                    <div class="attachments" data-summary-attachments></div>
+                  </article>
+                </div>
+
+                <label class="choice choice--checkbox">
+                  <input type="checkbox" id="confirmacao-ciente" name="confirmacaoCiente" required />
+                  <span>
+                    Declaro que as informações foram conferidas e que assumo responsabilidade pela veracidade dos dados
+                    apresentados.
+                  </span>
+                </label>
+
+                <footer class="wizard-step__actions">
+                  <button type="button" class="button button--ghost" data-action="previous">Voltar</button>
+                  <button type="submit" class="button">Próximo</button>
+                </footer>
+              </section>
+
+              <section class="wizard-step wizard-step--final" data-step="finalizado" aria-labelledby="step-finalizado" hidden>
+                <div class="wizard-step__header">
+                  <h2 id="step-finalizado">Solicitação registrada</h2>
+                  <p>O protocolo abaixo confirma o envio ao Canal Conciliar. Guarde-o para eventuais consultas.</p>
+                </div>
+
+                <article class="receipt" id="receipt" aria-live="polite">
+                  <header>
+                    <h3>Recibo de protocolo</h3>
+                  </header>
+                  <p>
+                    Protocolo: <strong data-summary="protocolo">—</strong><br />
+                    Data do envio: <span data-summary="dataEnvio">—</span>
+                  </p>
+                  <p>
+                    Método de acesso: <span data-summary="autenticacaoMetodo">—</span><br />
+                    Status da sessão: <span data-summary="autenticacaoStatus">—</span>
+                  </p>
+                  <p>
+                    Os dados serão avaliados pela equipe do TJDFT. Caso necessário, entraremos em contato pelos meios informados
+                    para solicitar complementações ou agendar audiência.
+                  </p>
+                  <button type="button" class="button" data-action="restart">Nova solicitação</button>
+                </article>
+              </section>
+            </div>
+          </form>
+        </div>
+
+        <aside class="workspace__aside">
+          <section class="card summary" aria-live="polite">
+            <header class="card__header">
+              <h2>Acompanhamento rápido</h2>
+              <p>Visualize os principais dados já fornecidos.</p>
+            </header>
+
+            <dl class="summary__list">
+              <div class="summary__group">
+                <dt>Autenticação</dt>
+                <dd data-preview="autenticacaoMetodo">Não autenticado</dd>
+                <dd data-preview="autenticacaoStatus">Aguardando acesso</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Orientações</dt>
+                <dd data-preview="orientacoesCiente">Pendente de leitura</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Advogado</dt>
+                <dd data-preview="advogadoNome">—</dd>
+                <dd data-preview="advogadoOab">—</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Contato</dt>
+                <dd data-preview="advogadoWhatsapp">—</dd>
+                <dd data-preview="advogadoEmail">—</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Participantes</dt>
+                <dd data-preview="participantesQuantidade">Nenhum participante cadastrado até o momento.</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Acordo</dt>
+                <dd data-preview="acordoAssunto">Assunto não selecionado</dd>
+              </div>
+              <div class="summary__group">
+                <dt>Confirmação</dt>
+                <dd data-preview="confirmacaoCiente">Aguardando confirmação</dd>
+              </div>
+            </dl>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
